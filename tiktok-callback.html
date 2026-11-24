@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Autorização — ZynkPlay</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header><a class="logo" href="./">Zynk<span>Play</span></a></header>
+  <h1 id="titulo">Autorização recebida</h1>
+  <p id="msg" class="muted">Pode fechar esta aba. O ZynkPlay Cortes vai concluir a conexão.</p>
+</main>
+<script>
+  // Página de retorno do login do TikTok (redirect URI). Não envia nada para lugar nenhum:
+  // o código fica só na barra de endereço, de onde a ferramenta local o lê.
+  var p = new URLSearchParams(location.search);
+  if (p.get("error")) {
+    document.getElementById("titulo").textContent = "Autorização não concluída";
+    document.getElementById("msg").textContent = "O TikTok informou: " + (p.get("error_description") || p.get("error"));
+  }
+</script>
+</body>
+</html>
